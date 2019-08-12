@@ -12,6 +12,8 @@ public class Copier {
 
     public void Copy() {
         char Char = source.GetChar();
-        destination.SetChar(Char);
+        if (Char != '\n') {
+            destination.SetChar(Char);
+        }
     }
 }
