@@ -4,9 +4,11 @@ public class Copier {
 
     private final ISource source;
 
-    public Copier(ISource source) {
+    public Copier(ISource source, IDestination destination) {
         this.source = source;
     }
 
-    public void Copy() {}
+    public void Copy() {
+        source.GetChar();
+    }
 }
