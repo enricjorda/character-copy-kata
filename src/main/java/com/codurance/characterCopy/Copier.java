@@ -11,7 +11,7 @@ public class Copier {
     }
 
     public void Copy() {
-        source.GetChar();
-        destination.SetChar(' ');
+        char Char = source.GetChar();
+        destination.SetChar(Char);
     }
 }
