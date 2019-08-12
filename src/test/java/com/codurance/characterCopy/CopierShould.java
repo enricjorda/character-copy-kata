@@ -1,19 +1,27 @@
 package com.codurance.characterCopy;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.mockito.Mockito.*;
 
 public class CopierShould {
 
-    ISource source = mock(ISource.class);
+    ISource source;
+    IDestination destination;
+    private Copier copier;
 
-    IDestination destination = mock(IDestination.class);
+    @BeforeEach
+    void setUp() {
+        source = mock(ISource.class);
+        destination = mock(IDestination.class);
+        copier = new Copier(source, destination);
+    }
 
     @Test
     void source_GetChar_is_called_when_Copy_is_called() {
 
-        Copier copier = new Copier(source, destination);
+        copier = new Copier(source, destination);
         copier.Copy();
 
         verify(source, atLeastOnce()).GetChar(); //MOCK
@@ -21,7 +29,6 @@ public class CopierShould {
 
     @Test
     void destination_SetChar_is_called_when_Copy_is_called() {
-        Copier copier = new Copier(source, destination);
         copier.Copy();
 
         verify(destination, atLeastOnce()).SetChar(anyChar()); //MOCK
@@ -33,7 +40,6 @@ public class CopierShould {
         char ANY_CHAR = 'n';
 
         when(source.GetChar()).thenReturn(ANY_CHAR); //STUB
-        Copier copier = new Copier(source, destination);
         copier.Copy();
 
         verify(destination, atLeastOnce()).SetChar(ANY_CHAR); //MOCK
@@ -44,7 +50,6 @@ public class CopierShould {
         char NEWLINE = '\n';
 
         when(source.GetChar()).thenReturn(NEWLINE); //STUB
-        Copier copier = new Copier(source, destination);
         copier.Copy();
 
         verify(destination, never()).SetChar(NEWLINE); //MOCK
