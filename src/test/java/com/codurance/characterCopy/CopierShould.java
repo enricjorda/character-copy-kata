@@ -11,7 +11,7 @@ public class CopierShould {
     IDestination destination = mock(IDestination.class);
     @Test
     void source_GetChar_is_called_when_Copy_is_called() {
-        when(source.GetChar()).thenReturn('n');
+
         Copier copier = new Copier(source, destination);
         copier.Copy();
 
@@ -25,5 +25,14 @@ public class CopierShould {
 
         verify(destination, atLeastOnce()).SetChar(' ');
 
+    }
+
+    @Test
+    void have_the_same_char_in_source_and_destination() {
+        when(source.GetChar()).thenReturn('n');
+        Copier copier = new Copier(source, destination);
+        copier.Copy();
+
+        verify(destination, atLeastOnce()).SetChar('n');
     }
 }
